@@ -2,6 +2,20 @@ from jinja2 import Template
 import json
 from reportlab.pdfgen import canvas
 from datetime import datetime, timedelta
+from jinja2.ext import Extension
+from jinja2.lexer import Token
+from jinja2.utils import open_if_exists
+
+class SumExtension(Extension):
+    def filter_test(self, value):
+        return value
+
+    def sum(self, items, attr):
+        return sum(getattr(item, attr) for item in items)
+
+    def __init__(self, environment):
+        super(SumExtension, self).__init__(environment)
+        environment.filters['sum'] = self.sum
 
 def generate_monthly_report(template_path, data_path):
     with open(template_path, 'r') as f:
@@ -51,6 +65,9 @@ def generate_monthly_report(template_path, data_path):
 
     data['achievements'] = achievements
     data['challenges'] = challenges
+
+    # Add sum extension
+    template.env.add_extension(SumExtension)
 
     pdf_content = template.render(data)
 

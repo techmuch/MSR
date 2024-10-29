@@ -90,6 +90,52 @@
 <h2>Financials</h2>
 <p>Planned Expenditures: {{ planned_expenditures }}</p>
 <p>Actual Expenditures: {{ actual_expenditures }}</p>
+<div>
+  <canvas id="financialChart" width="400" height="200"></canvas>
+  <script>
+    var ctx = document.getElementById('financialChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [
+          {% for account in financials.accounts %}
+            '{{ account.account_name }}',
+          {% endfor %}
+        ],
+        datasets: [{
+          label: 'Planned Expenditures',
+          data: [
+            {% for account in financials.accounts %}
+              {{ account.expected_expenditures | sum(attribute='amount') }},
+            {% endfor %}
+          ],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }, {
+          label: 'Actual Expenditures',
+          data: [
+            {% for account in financials.accounts %}
+              {{ account.actual_expenditures | sum(attribute='amount') }},
+            {% endfor %}
+          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</div>
 
 <h2>Risk Tracker</h2>
 <ul>
