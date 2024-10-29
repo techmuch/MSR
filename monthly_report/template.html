@@ -1,0 +1,18 @@
+<h1>Monthly Status Report</h1>
+
+<p><strong>Month:</strong> {{ month }}</p>
+<p><strong>Year:</strong> {{ year }}</p>
+
+<h2>Key Achievements</h2>
+<ul>
+  {% for achievement in achievements %}
+    <li>{{ achievement }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Challenges</h2>
+<ul>
+  {% for challenge in challenges %}
+    <li>{{ challenge }}</li>
+  {% endfor %}
+</ul>
