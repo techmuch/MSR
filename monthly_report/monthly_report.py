@@ -17,60 +17,69 @@ class SumExtension(Extension):
         super(SumExtension, self).__init__(environment)
         environment.filters['sum'] = self.sum
 
-def generate_monthly_report(template_path, data_path):
-    with open(template_path, 'r') as f:
-        template = Template(f.read())
+class MonthlyReportGenerator:
+    def __init__(self, template_path, data_path):
+        self.template_path = template_path
+        self.data_path = data_path
 
-    with open(data_path, 'r') as f:
-        data = json.load(f)
+    def generate_monthly_report(self):
+        with open(self.template_path, 'r') as f:
+            template = Template(f.read())
 
-    # Add date filter to template
-    def date_filter(date_str):
-        return datetime.strptime(date_str, '%Y-%m-%d')
+        with open(self.data_path, 'r') as f:
+            data = json.load(f)
 
-    template.filters['date'] = date_filter
+        # Add date filter to template
+        def date_filter(date_str):
+            return datetime.strptime(date_str, '%Y-%m-%d')
 
-    # Calculate dates
-    now = datetime.now()
-    thirty_days = now + timedelta(days=30)
-    sixty_days = now + timedelta(days=60)
-    ninety_days = now + timedelta(days=90)
+        template.filters['date'] = date_filter
 
-    # Pass dates to template
-    data['now'] = now.strftime('%Y-%m-%d')
-    data['thirty_days'] = thirty_days.strftime('%Y-%m-%d')
-    data['sixty_days'] = sixty_days.strftime('%Y-%m-%d')
-    data['ninety_days'] = ninety_days.strftime('%Y-%m-%d')
+        # Calculate dates
+        now = datetime.now()
+        thirty_days = now + timedelta(days=30)
+        sixty_days = now + timedelta(days=60)
+        ninety_days = now + timedelta(days=90)
 
-    # Calculate effort start and planned completion dates
-    for effort in data['roadmap']:
-        effort['start_date'] = min(step['start_date'] for step in effort['steps'])
-        effort['planned_completion_date'] = max(step['planned_completion_date'] for step in effort['steps'])
+        # Pass dates to template
+        data['now'] = now.strftime('%Y-%m-%d')
+        data['thirty_days'] = thirty_days.strftime('%Y-%m-%d')
+        data['sixty_days'] = sixty_days.strftime('%Y-%m-%d')
+        data['ninety_days'] = ninety_days.strftime('%Y-%m-%d')
 
-    # Group achievements by category
-    achievements = {}
-    for achievement in data['achievements']:
-        category = achievement['category']
-        if category not in achievements:
-            achievements[category] = []
-        achievements[category].append(achievement['description'])
+        # Calculate effort start and planned completion dates
+        for effort in data['roadmap']:
+            effort['start_date'] = min(step['start_date'] for step in effort['steps'])
+            effort['planned_completion_date'] = max(step['planned_completion_date'] for step in effort['steps'])
 
-    # Group challenges by category
-    challenges = {}
-    for challenge in data['challenges']:
-        category = challenge['category']
-        if category not in challenges:
-            challenges[category] = []
-        challenges[category].append(challenge['description'])
+        # Group achievements by category
+        achievements = {}
+        for achievement in data['achievements']:
+            category = achievement['category']
+            if category not in achievements:
+                achievements[category] = []
+            achievements[category].append(achievement['description'])
 
-    data['achievements'] = achievements
-    data['challenges'] = challenges
+        # Group challenges by category
+        challenges = {}
+        for challenge in data['challenges']:
+            category = challenge['category']
+            if category not in challenges:
+                challenges[category] = []
+            challenges[category].append(challenge['description'])
 
-    # Add sum extension
-    template.env.add_extension(SumExtension)
+        data['achievements'] = achievements
+        data['challenges'] = challenges
 
-    pdf_content = template.render(data)
+        # Add sum extension
+        template.env.add_extension(SumExtension)
 
-    c = canvas.Canvas("monthly_report.pdf")
-    c.drawString(100, 750, pdf_content)
-    c.save()
+        pdf_content = template.render(data)
+
+        c = canvas.Canvas("monthly_report.pdf")
+        c.drawString(100, 750, pdf_content)
+        c.save()
+
+# Example usage:
+# generator = MonthlyReportGenerator('monthly_report/template.html', 'monthly_report/data.json')
+# generator.generate_monthly_report()
