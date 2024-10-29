@@ -1,4 +1,4 @@
-from jinja2 import Template
+from jinja2 import Template, Environment
 import json
 from reportlab.pdfgen import canvas
 from datetime import datetime, timedelta
@@ -24,16 +24,25 @@ class MonthlyReportGenerator:
 
     def generate_monthly_report(self):
         with open(self.template_path, 'r') as f:
-            template = Template(f.read())
+            template_str = f.read()
 
         with open(self.data_path, 'r') as f:
             data = json.load(f)
 
-        # Add date filter to template
+        # Create a Jinja2 environment
+        env = Environment()
+
+        # Add date filter to environment
         def date_filter(date_str):
             return datetime.strptime(date_str, '%Y-%m-%d')
 
-        template.filters['date'] = date_filter
+        env.filters['date'] = date_filter
+
+        # Add sum extension
+        env.add_extension(SumExtension)
+
+        # Create a template from the environment
+        template = env.from_string(template_str)
 
         # Calculate dates
         now = datetime.now()
@@ -70,9 +79,6 @@ class MonthlyReportGenerator:
 
         data['achievements'] = achievements
         data['challenges'] = challenges
-
-        # Add sum extension
-        template.env.add_extension(SumExtension)
 
         pdf_content = template.render(data)
 
