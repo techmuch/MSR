@@ -47,9 +47,18 @@
   "month": "October",
   "year": 2023,
   "achievements": [
-    "Completed feature X",
-    "Launched marketing campaign Y",
-    "Increased user engagement by 15%"
+    {
+      "category": "Development",
+      "description": "Completed feature X"
+    },
+    {
+      "category": "Marketing",
+      "description": "Launched marketing campaign Y"
+    },
+    {
+      "category": "Engagement",
+      "description": "Increased user engagement by 15%"
+    }
   ],
   "challenges": [
     "Delayed delivery of component Z",

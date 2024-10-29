@@ -33,6 +33,16 @@ def generate_monthly_report(template_path, data_path):
         effort['start_date'] = min(step['start_date'] for step in effort['steps'])
         effort['planned_completion_date'] = max(step['planned_completion_date'] for step in effort['steps'])
 
+    # Group achievements by category
+    achievements = {}
+    for achievement in data['achievements']:
+        category = achievement['category']
+        if category not in achievements:
+            achievements[category] = []
+        achievements[category].append(achievement['description'])
+
+    data['achievements'] = achievements
+
     pdf_content = template.render(data)
 
     c = canvas.Canvas("monthly_report.pdf")
