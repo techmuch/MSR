@@ -28,6 +28,11 @@ def generate_monthly_report(template_path, data_path):
     data['sixty_days'] = sixty_days.strftime('%Y-%m-%d')
     data['ninety_days'] = ninety_days.strftime('%Y-%m-%d')
 
+    # Calculate effort start and planned completion dates
+    for effort in data['roadmap']:
+        effort['start_date'] = min(step['start_date'] for step in effort['steps'])
+        effort['planned_completion_date'] = max(step['planned_completion_date'] for step in effort['steps'])
+
     pdf_content = template.render(data)
 
     c = canvas.Canvas("monthly_report.pdf")
