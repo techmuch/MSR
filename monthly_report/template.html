@@ -149,3 +149,53 @@
     </li>
   {% endfor %}
 </ul>
+
+<h2>Risk Matrix</h2>
+<div>
+  <canvas id="riskMatrix" width="400" height="400"></canvas>
+  <script>
+    var ctx = document.getElementById('riskMatrix').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Risks',
+          data: [
+            {% for risk in risks %}
+              { x: {{ risk.likelihood }}, y: {{ risk.impact }} },
+            {% endfor %}
+          ],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Likelihood'
+            },
+            ticks: {
+              min: 0,
+              max: 5,
+              stepSize: 1
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Impact'
+            },
+            ticks: {
+              min: 0,
+              max: 5,
+              stepSize: 1
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</div>
