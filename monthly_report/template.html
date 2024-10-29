@@ -4,24 +4,28 @@
 <p><strong>Year:</strong> {{ year }}</p>
 
 <h2>Key Achievements</h2>
-{% for category, achievements in achievements.items() %}
-  <h3>{{ category }}</h3>
-  <ul>
-    {% for achievement in achievements %}
-      <li>{{ achievement }}</li>
-    {% endfor %}
-  </ul>
-{% endfor %}
+{% if achievements %}
+  {% for category, achievements_list in achievements.items() %}
+    <h3>{{ category }}</h3>
+    <ul>
+      {% for achievement in achievements_list %}
+        <li>{{ achievement }}</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
 
 <h2>Challenges</h2>
-{% for category, challenges in challenges.items() %}
-  <h3>{{ category }}</h3>
-  <ul>
-    {% for challenge in challenges %}
-      <li>{{ challenge }}</li>
-    {% endfor %}
-  </ul>
-{% endfor %}
+{% if challenges %}
+  {% for category, challenges_list in challenges.items() %}
+    <h3>{{ category }}</h3>
+    <ul>
+      {% for challenge in challenges_list %}
+        <li>{{ challenge }}</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
 
 <h2>Planned Efforts</h2>
 {% for effort in roadmap %}
