@@ -1,4 +1,49 @@
 {
+  "project_name": "Project X",
+  "project_description": "This is a project to develop a new software system.",
+  "project_start_date": "2023-10-01",
+  "project_end_date": "2024-03-31",
+  "expected_duration": 6,
+  "authors": [
+    {
+      "name": "John Doe",
+      "title": "Project Manager",
+      "role": "Project Manager",
+      "contact_info": {
+        "email": "john.doe@example.com",
+        "phone": "123-456-7890"
+      }
+    },
+    {
+      "name": "Jane Smith",
+      "title": "Technical Lead",
+      "role": "Technical Lead",
+      "contact_info": {
+        "email": "jane.smith@example.com",
+        "phone": "987-654-3210"
+      }
+    }
+  ],
+  "recipients": [
+    {
+      "name": "Bob Johnson",
+      "title": "CEO",
+      "role": "CEO",
+      "contact_info": {
+        "email": "bob.johnson@example.com",
+        "phone": "555-123-4567"
+      }
+    },
+    {
+      "name": "Alice Brown",
+      "title": "CFO",
+      "role": "CFO",
+      "contact_info": {
+        "email": "alice.brown@example.com",
+        "phone": "555-901-2345"
+      }
+    }
+  ],
   "month": "October",
   "year": 2023,
   "achievements": [
@@ -80,6 +125,144 @@
       ]
     }
   ],
+  "financials": {
+    "accounts": [
+      {
+        "account_name": "Account 1",
+        "expected_expenditures": [
+          {
+            "month": "October",
+            "year": 2023,
+            "amount": 10000
+          },
+          {
+            "month": "November",
+            "year": 2023,
+            "amount": 15000
+          },
+          {
+            "month": "December",
+            "year": 2023,
+            "amount": 20000
+          },
+          {
+            "month": "January",
+            "year": 2024,
+            "amount": 25000
+          },
+          {
+            "month": "February",
+            "year": 2024,
+            "amount": 30000
+          },
+          {
+            "month": "March",
+            "year": 2024,
+            "amount": 35000
+          }
+        ],
+        "actual_expenditures": [
+          {
+            "month": "October",
+            "year": 2023,
+            "amount": 9000
+          },
+          {
+            "month": "November",
+            "year": 2023,
+            "amount": 14000
+          },
+          {
+            "month": "December",
+            "year": 2023,
+            "amount": 19000
+          },
+          {
+            "month": "January",
+            "year": 2024,
+            "amount": 24000
+          },
+          {
+            "month": "February",
+            "year": 2024,
+            "amount": 29000
+          },
+          {
+            "month": "March",
+            "year": 2024,
+            "amount": 34000
+          }
+        ]
+      },
+      {
+        "account_name": "Account 2",
+        "expected_expenditures": [
+          {
+            "month": "October",
+            "year": 2023,
+            "amount": 5000
+          },
+          {
+            "month": "November",
+            "year": 2023,
+            "amount": 7500
+          },
+          {
+            "month": "December",
+            "year": 2023,
+            "amount": 10000
+          },
+          {
+            "month": "January",
+            "year": 2024,
+            "amount": 12500
+          },
+          {
+            "month": "February",
+            "year": 2024,
+            "amount": 15000
+          },
+          {
+            "month": "March",
+            "year": 2024,
+            "amount": 17500
+          }
+        ],
+        "actual_expenditures": [
+          {
+            "month": "October",
+            "year": 2023,
+            "amount": 4500
+          },
+          {
+            "month": "November",
+            "year": 2023,
+            "amount": 7000
+          },
+          {
+            "month": "December",
+            "year": 2023,
+            "amount": 9500
+          },
+          {
+            "month": "January",
+            "year": 2024,
+            "amount": 12000
+          },
+          {
+            "month": "February",
+            "year": 2024,
+            "amount": 14500
+          },
+          {
+            "month": "March",
+            "year": 2024,
+            "amount": 17000
+          }
+        ]
+      }
+    ]
+  },
   "planned_expenditures": 100000,
   "actual_expenditures": 80000,
   "risks": [
