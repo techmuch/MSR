@@ -174,64 +174,64 @@
         "account_name": "Account 1",
         "expected_expenditures": [
           {
-            "month": "October",
+            "month": 10,
             "year": 2023,
             "amount": 10000
           },
           {
-            "month": "November",
+            "month": 11,
             "year": 2023,
             "amount": 15000
           },
           {
-            "month": "December",
+            "month": 12,
             "year": 2023,
             "amount": 20000
           },
           {
-            "month": "January",
+            "month": 1,
             "year": 2024,
             "amount": 25000
           },
           {
-            "month": "February",
+            "month": 2,
             "year": 2024,
             "amount": 30000
           },
           {
-            "month": "March",
+            "month": 3,
             "year": 2024,
             "amount": 35000
           }
         ],
         "actual_expenditures": [
           {
-            "month": "October",
+            "month": 10,
             "year": 2023,
             "amount": 9000
           },
           {
-            "month": "November",
+            "month": 11,
             "year": 2023,
             "amount": 14000
           },
           {
-            "month": "December",
+            "month": 12,
             "year": 2023,
             "amount": 19000
           },
           {
-            "month": "January",
+            "month": 1,
             "year": 2024,
             "amount": 24000
           },
           {
-            "month": "February",
+            "month": 2,
             "year": 2024,
             "amount": 29000
           },
           {
-            "month": "March",
+            "month": 3,
             "year": 2024,
             "amount": 34000
           }
@@ -241,64 +241,64 @@
         "account_name": "Account 2",
         "expected_expenditures": [
           {
-            "month": "October",
+            "month": 10,
             "year": 2023,
             "amount": 5000
           },
           {
-            "month": "November",
+            "month": 11,
             "year": 2023,
             "amount": 7500
           },
           {
-            "month": "December",
+            "month": 12,
             "year": 2023,
             "amount": 10000
           },
           {
-            "month": "January",
+            "month": 1,
             "year": 2024,
             "amount": 12500
           },
           {
-            "month": "February",
+            "month": 2,
             "year": 2024,
             "amount": 15000
           },
           {
-            "month": "March",
+            "month": 3,
             "year": 2024,
             "amount": 17500
           }
         ],
         "actual_expenditures": [
           {
-            "month": "October",
+            "month": 10,
             "year": 2023,
             "amount": 4500
           },
           {
-            "month": "November",
+            "month": 11,
             "year": 2023,
             "amount": 7000
           },
           {
-            "month": "December",
+            "month": 12,
             "year": 2023,
             "amount": 9500
           },
           {
-            "month": "January",
+            "month": 1,
             "year": 2024,
             "amount": 12000
           },
           {
-            "month": "February",
+            "month": 2,
             "year": 2024,
             "amount": 14500
           },
           {
-            "month": "March",
+            "month": 3,
             "year": 2024,
             "amount": 17000
           }
