@@ -10,7 +10,7 @@
     "Delayed delivery of component Z",
     "Facing technical difficulties with integration A"
   ],
-  "next_30_days_efforts": [
+  "roadmap": [
     {
       "description": "Effort 1",
       "start_date": "2023-10-01",
@@ -44,9 +44,7 @@
           "planned_completion_date": "2023-11-15"
         }
       ]
-    }
-  ],
-  "next_60_days_efforts": [
+    },
     {
       "description": "Effort 3",
       "start_date": "2023-11-01",
@@ -63,9 +61,7 @@
           "planned_completion_date": "2023-12-31"
         }
       ]
-    }
-  ],
-  "next_90_days_efforts": [
+    },
     {
       "description": "Effort 4",
       "start_date": "2023-12-01",

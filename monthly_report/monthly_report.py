@@ -1,6 +1,7 @@
 from jinja2 import Template
 import json
 from reportlab.pdfgen import canvas
+from datetime import datetime, timedelta
 
 def generate_monthly_report(template_path, data_path):
     with open(template_path, 'r') as f:
@@ -8,6 +9,12 @@ def generate_monthly_report(template_path, data_path):
 
     with open(data_path, 'r') as f:
         data = json.load(f)
+
+    # Add date filter to template
+    def date_filter(date_str):
+        return datetime.strptime(date_str, '%Y-%m-%d')
+
+    template.filters['date'] = date_filter
 
     pdf_content = template.render(data)
 

@@ -18,68 +18,68 @@
 </ul>
 
 <h2>Planned Efforts</h2>
-<h3>Next 30 Days</h3>
-<ul>
-  {% for effort in next_30_days_efforts %}
-    <li>
-      <strong>{{ effort.description }}</strong>
-      <p>Start Date: {{ effort.start_date }}</p>
-      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
-      <h4>Steps:</h4>
-      <ul>
-        {% for step in effort.steps %}
-          <li>
-            <strong>{{ step.description }}</strong>
-            <p>Start Date: {{ step.start_date }}</p>
-            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
-          </li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endfor %}
-</ul>
-
-<h3>Next 60 Days</h3>
-<ul>
-  {% for effort in next_60_days_efforts %}
-    <li>
-      <strong>{{ effort.description }}</strong>
-      <p>Start Date: {{ effort.start_date }}</p>
-      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
-      <h4>Steps:</h4>
-      <ul>
-        {% for step in effort.steps %}
-          <li>
-            <strong>{{ step.description }}</strong>
-            <p>Start Date: {{ step.start_date }}</p>
-            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
-          </li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endfor %}
-</ul>
-
-<h3>Next 90 Days</h3>
-<ul>
-  {% for effort in next_90_days_efforts %}
-    <li>
-      <strong>{{ effort.description }}</strong>
-      <p>Start Date: {{ effort.start_date }}</p>
-      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
-      <h4>Steps:</h4>
-      <ul>
-        {% for step in effort.steps %}
-          <li>
-            <strong>{{ step.description }}</strong>
-            <p>Start Date: {{ step.start_date }}</p>
-            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
-          </li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endfor %}
-</ul>
+{% for effort in roadmap %}
+  {% if effort.start_date|date >= 'now'|date and effort.start_date|date <= 'now'|date + 30 %}
+    <h3>Next 30 Days</h3>
+    <ul>
+      <li>
+        <strong>{{ effort.description }}</strong>
+        <p>Start Date: {{ effort.start_date }}</p>
+        <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+        <h4>Steps:</h4>
+        <ul>
+          {% for step in effort.steps %}
+            <li>
+              <strong>{{ step.description }}</strong>
+              <p>Start Date: {{ step.start_date }}</p>
+              <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  {% endif %}
+  {% if effort.start_date|date >= 'now'|date + 30 and effort.start_date|date <= 'now'|date + 60 %}
+    <h3>Next 60 Days</h3>
+    <ul>
+      <li>
+        <strong>{{ effort.description }}</strong>
+        <p>Start Date: {{ effort.start_date }}</p>
+        <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+        <h4>Steps:</h4>
+        <ul>
+          {% for step in effort.steps %}
+            <li>
+              <strong>{{ step.description }}</strong>
+              <p>Start Date: {{ step.start_date }}</p>
+              <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  {% endif %}
+  {% if effort.start_date|date >= 'now'|date + 60 and effort.start_date|date <= 'now'|date + 90 %}
+    <h3>Next 90 Days</h3>
+    <ul>
+      <li>
+        <strong>{{ effort.description }}</strong>
+        <p>Start Date: {{ effort.start_date }}</p>
+        <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+        <h4>Steps:</h4>
+        <ul>
+          {% for step in effort.steps %}
+            <li>
+              <strong>{{ step.description }}</strong>
+              <p>Start Date: {{ step.start_date }}</p>
+              <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  {% endif %}
+{% endfor %}
 
 <h2>Financials</h2>
 <p>Planned Expenditures: {{ planned_expenditures }}</p>
