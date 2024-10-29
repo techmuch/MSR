@@ -41,7 +41,16 @@ def generate_monthly_report(template_path, data_path):
             achievements[category] = []
         achievements[category].append(achievement['description'])
 
+    # Group challenges by category
+    challenges = {}
+    for challenge in data['challenges']:
+        category = challenge['category']
+        if category not in challenges:
+            challenges[category] = []
+        challenges[category].append(challenge['description'])
+
     data['achievements'] = achievements
+    data['challenges'] = challenges
 
     pdf_content = template.render(data)
 

@@ -14,11 +14,14 @@
 {% endfor %}
 
 <h2>Challenges</h2>
-<ul>
-  {% for challenge in challenges %}
-    <li>{{ challenge }}</li>
-  {% endfor %}
-</ul>
+{% for category, challenges in challenges.items() %}
+  <h3>{{ category }}</h3>
+  <ul>
+    {% for challenge in challenges %}
+      <li>{{ challenge }}</li>
+    {% endfor %}
+  </ul>
+{% endfor %}
 
 <h2>Planned Efforts</h2>
 {% for effort in roadmap %}

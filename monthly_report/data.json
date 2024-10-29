@@ -61,8 +61,14 @@
     }
   ],
   "challenges": [
-    "Delayed delivery of component Z",
-    "Facing technical difficulties with integration A"
+    {
+      "category": "Technical",
+      "description": "Delayed delivery of component Z"
+    },
+    {
+      "category": "Operational",
+      "description": "Facing technical difficulties with integration A"
+    }
   ],
   "roadmap": [
     {
