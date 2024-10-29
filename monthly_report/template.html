@@ -16,3 +16,84 @@
     <li>{{ challenge }}</li>
   {% endfor %}
 </ul>
+
+<h2>Planned Efforts</h2>
+<h3>Next 30 Days</h3>
+<ul>
+  {% for effort in next_30_days_efforts %}
+    <li>
+      <strong>{{ effort.description }}</strong>
+      <p>Start Date: {{ effort.start_date }}</p>
+      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+      <h4>Steps:</h4>
+      <ul>
+        {% for step in effort.steps %}
+          <li>
+            <strong>{{ step.description }}</strong>
+            <p>Start Date: {{ step.start_date }}</p>
+            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Next 60 Days</h3>
+<ul>
+  {% for effort in next_60_days_efforts %}
+    <li>
+      <strong>{{ effort.description }}</strong>
+      <p>Start Date: {{ effort.start_date }}</p>
+      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+      <h4>Steps:</h4>
+      <ul>
+        {% for step in effort.steps %}
+          <li>
+            <strong>{{ step.description }}</strong>
+            <p>Start Date: {{ step.start_date }}</p>
+            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Next 90 Days</h3>
+<ul>
+  {% for effort in next_90_days_efforts %}
+    <li>
+      <strong>{{ effort.description }}</strong>
+      <p>Start Date: {{ effort.start_date }}</p>
+      <p>Planned Completion Date: {{ effort.planned_completion_date }}</p>
+      <h4>Steps:</h4>
+      <ul>
+        {% for step in effort.steps %}
+          <li>
+            <strong>{{ step.description }}</strong>
+            <p>Start Date: {{ step.start_date }}</p>
+            <p>Planned Completion Date: {{ step.planned_completion_date }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>Financials</h2>
+<p>Planned Expenditures: {{ planned_expenditures }}</p>
+<p>Actual Expenditures: {{ actual_expenditures }}</p>
+
+<h2>Risk Tracker</h2>
+<ul>
+  {% for risk in risks %}
+    <li>
+      <strong>{{ risk.description }}</strong>
+      <p>Likelihood: {{ risk.likelihood }}</p>
+      <p>Impact: {{ risk.impact }}</p>
+      <p>Mitigation Plan: {{ risk.mitigation_plan }}</p>
+      <p>Expected Effect of Mitigation Plan: {{ risk.expected_effect }}</p>
+    </li>
+  {% endfor %}
+</ul>

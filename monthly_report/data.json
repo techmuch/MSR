@@ -9,5 +9,97 @@
   "challenges": [
     "Delayed delivery of component Z",
     "Facing technical difficulties with integration A"
+  ],
+  "next_30_days_efforts": [
+    {
+      "description": "Effort 1",
+      "start_date": "2023-10-01",
+      "planned_completion_date": "2023-10-30",
+      "steps": [
+        {
+          "description": "Step 1",
+          "start_date": "2023-10-01",
+          "planned_completion_date": "2023-10-15"
+        },
+        {
+          "description": "Step 2",
+          "start_date": "2023-10-15",
+          "planned_completion_date": "2023-10-30"
+        }
+      ]
+    },
+    {
+      "description": "Effort 2",
+      "start_date": "2023-10-15",
+      "planned_completion_date": "2023-11-15",
+      "steps": [
+        {
+          "description": "Step 1",
+          "start_date": "2023-10-15",
+          "planned_completion_date": "2023-11-01"
+        },
+        {
+          "description": "Step 2",
+          "start_date": "2023-11-01",
+          "planned_completion_date": "2023-11-15"
+        }
+      ]
+    }
+  ],
+  "next_60_days_efforts": [
+    {
+      "description": "Effort 3",
+      "start_date": "2023-11-01",
+      "planned_completion_date": "2023-12-31",
+      "steps": [
+        {
+          "description": "Step 1",
+          "start_date": "2023-11-01",
+          "planned_completion_date": "2023-11-30"
+        },
+        {
+          "description": "Step 2",
+          "start_date": "2023-11-30",
+          "planned_completion_date": "2023-12-31"
+        }
+      ]
+    }
+  ],
+  "next_90_days_efforts": [
+    {
+      "description": "Effort 4",
+      "start_date": "2023-12-01",
+      "planned_completion_date": "2024-03-31",
+      "steps": [
+        {
+          "description": "Step 1",
+          "start_date": "2023-12-01",
+          "planned_completion_date": "2024-01-31"
+        },
+        {
+          "description": "Step 2",
+          "start_date": "2024-01-31",
+          "planned_completion_date": "2024-03-31"
+        }
+      ]
+    }
+  ],
+  "planned_expenditures": 100000,
+  "actual_expenditures": 80000,
+  "risks": [
+    {
+      "description": "Risk 1",
+      "likelihood": "High",
+      "impact": "High",
+      "mitigation_plan": "Plan 1",
+      "expected_effect": "Reduced risk"
+    },
+    {
+      "description": "Risk 2",
+      "likelihood": "Medium",
+      "impact": "Medium",
+      "mitigation_plan": "Plan 2",
+      "expected_effect": "Reduced risk"
+    }
   ]
 }
