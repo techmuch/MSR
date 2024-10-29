@@ -6,18 +6,38 @@
   "expected_duration": 6,
   "authors": [
     {
+      "id": 1,
       "name": "John Doe",
       "title": "Project Manager",
       "role": "Project Manager",
+      "description": "Responsible for overall project management",
+      "rates": {
+        "2023-10": 100,
+        "2023-11": 100,
+        "2023-12": 100,
+        "2024-01": 100,
+        "2024-02": 100,
+        "2024-03": 100
+      },
       "contact_info": {
         "email": "john.doe@example.com",
         "phone": "123-456-7890"
       }
     },
     {
+      "id": 2,
       "name": "Jane Smith",
       "title": "Technical Lead",
       "role": "Technical Lead",
+      "description": "Responsible for technical aspects of the project",
+      "rates": {
+        "2023-10": 120,
+        "2023-11": 120,
+        "2023-12": 120,
+        "2024-01": 120,
+        "2024-02": 120,
+        "2024-03": 120
+      },
       "contact_info": {
         "email": "jane.smith@example.com",
         "phone": "987-654-3210"
@@ -75,14 +95,18 @@
       "description": "Effort 1",
       "steps": [
         {
+          "id": 1,
           "description": "Step 1",
           "start_date": "2023-10-01",
-          "planned_completion_date": "2023-10-15"
+          "planned_completion_date": "2023-10-15",
+          "team_members": [1, 2]
         },
         {
+          "id": 2,
           "description": "Step 2",
           "start_date": "2023-10-15",
-          "planned_completion_date": "2023-10-30"
+          "planned_completion_date": "2023-10-30",
+          "team_members": [1]
         }
       ]
     },
@@ -90,14 +114,18 @@
       "description": "Effort 2",
       "steps": [
         {
+          "id": 3,
           "description": "Step 1",
           "start_date": "2023-10-15",
-          "planned_completion_date": "2023-11-01"
+          "planned_completion_date": "2023-11-01",
+          "team_members": [2]
         },
         {
+          "id": 4,
           "description": "Step 2",
           "start_date": "2023-11-01",
-          "planned_completion_date": "2023-11-15"
+          "planned_completion_date": "2023-11-15",
+          "team_members": [1, 2]
         }
       ]
     },
@@ -105,14 +133,18 @@
       "description": "Effort 3",
       "steps": [
         {
+          "id": 5,
           "description": "Step 1",
           "start_date": "2023-11-01",
-          "planned_completion_date": "2023-11-30"
+          "planned_completion_date": "2023-11-30",
+          "team_members": [1]
         },
         {
+          "id": 6,
           "description": "Step 2",
           "start_date": "2023-11-30",
-          "planned_completion_date": "2023-12-31"
+          "planned_completion_date": "2023-12-31",
+          "team_members": [2]
         }
       ]
     },
@@ -120,14 +152,18 @@
       "description": "Effort 4",
       "steps": [
         {
+          "id": 7,
           "description": "Step 1",
           "start_date": "2023-12-01",
-          "planned_completion_date": "2024-01-31"
+          "planned_completion_date": "2024-01-31",
+          "team_members": [1, 2]
         },
         {
+          "id": 8,
           "description": "Step 2",
           "start_date": "2024-01-31",
-          "planned_completion_date": "2024-03-31"
+          "planned_completion_date": "2024-03-31",
+          "team_members": [1]
         }
       ]
     }
