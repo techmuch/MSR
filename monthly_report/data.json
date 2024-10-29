@@ -311,15 +311,15 @@
   "risks": [
     {
       "description": "Risk 1",
-      "likelihood": "High",
-      "impact": "High",
+      "likelihood": 5,
+      "impact": 5,
       "mitigation_plan": "Plan 1",
       "expected_effect": "Reduced risk"
     },
     {
       "description": "Risk 2",
-      "likelihood": "Medium",
-      "impact": "Medium",
+      "likelihood": 3,
+      "impact": 3,
       "mitigation_plan": "Plan 2",
       "expected_effect": "Reduced risk"
     }
