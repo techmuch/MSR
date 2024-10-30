@@ -6,7 +6,8 @@ from reportlab.lib.units import inch
 from reportlab.graphics.shapes import Drawing, String
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.linecharts import HorizontalLineChart
-from reportlab.graphics.charts.scatter import ScatterPlot
+# from reportlab.graphics.charts.scatter import ScatterPlot
+from reportlab.graphics.charts.lineplots import ScatterPlot
 from reportlab.graphics.widgets.markers import makeMarker
 from reportlab.pdfgen import canvas
 from datetime import datetime, timedelta
