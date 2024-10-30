@@ -38,6 +38,51 @@ class MonthlyReportGenerator:
             spaceAfter=12
         ))
 
+    def _add_title_page(self, story, data):
+        """Add the title page to the report"""
+        # Add logo if it exists
+        if os.path.exists(data['logo_path']):
+            img = Image(data['logo_path'])
+            img.drawHeight = 1.5*inch
+            img.drawWidth = 1.5*inch
+            story.append(img)
+            story.append(Spacer(1, 12))
+
+        # Title
+        story.append(Paragraph(f"{data['project_name']}", self.styles['CustomTitle']))
+        story.append(Paragraph(f"Monthly Report - {data['month']} {data['year']}", self.styles['SectionTitle']))
+        story.append(Spacer(1, 30))
+
+        # Version
+        story.append(Paragraph(f"Version: {data['version']}", self.styles['Normal']))
+        story.append(Spacer(1, 30))
+
+        # Authors
+        story.append(Paragraph("Authors:", self.styles['SubsectionTitle']))
+        for author in data['authors']:
+            author_text = (
+                f"<b>{author['name']}</b><br/>"
+                f"Title: {author['title']}<br/>"
+                f"Role: {author['role']}<br/>"
+                f"Email: {author['contact_info']['email']}<br/>"
+                f"Phone: {author['contact_info']['phone']}"
+            )
+            story.append(Paragraph(author_text, self.styles['Normal']))
+            story.append(Spacer(1, 12))
+
+    def _add_project_summary(self, story, data):
+        """Add the project summary section"""
+        story.append(Paragraph("Project Summary", self.styles['SectionTitle']))
+        
+        summary_text = (
+            f"<b>Description:</b> {data['project_description']}<br/><br/>"
+            f"<b>Start Date:</b> {data['project_start_date']}<br/>"
+            f"<b>End Date:</b> {data['project_end_date']}<br/>"
+            f"<b>Expected Duration:</b> {data['expected_duration']} months"
+        )
+        story.append(Paragraph(summary_text, self.styles['Normal']))
+        story.append(Spacer(1, 20))
+
     def _create_risk_matrix(self, risks):
         """Create a risk matrix visualization"""
         drawing = Drawing(400, 400)
