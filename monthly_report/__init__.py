@@ -80,8 +80,8 @@ class MonthlyReportGenerator:
         data['achievements'] = achievements
         data['challenges'] = challenges
 
-        # Pass data to template
-        pdf_content = template.render(data=data)
+        # Pass data directly to template
+        pdf_content = template.render(**data)
 
         c = canvas.Canvas("monthly_report.pdf")
         c.drawString(100, 750, pdf_content)
