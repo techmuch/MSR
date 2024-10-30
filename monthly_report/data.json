@@ -1,4 +1,6 @@
 {
+  "version": "1.0",
+  "logo_path": "project_logo.png",
   "project_name": "Project X",
   "project_description": "This is a project to develop a new software system.",
   "project_start_date": "2023-10-01",
