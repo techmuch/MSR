@@ -128,11 +128,11 @@ class MonthlyReportGenerator:
         x_label.fontSize = 12
         x_label.textAnchor = 'middle'
         
-        # Rotated y-label using transform
+        # Rotated y-label
         y_label = String(20, 200, 'Impact')
         y_label.fontSize = 12
         y_label.textAnchor = 'middle'
-        y_label.transform = (0, 1, -1, 0, 20, 200)  # Matrix for 90-degree rotation
+        drawing.transform = (0, 1, -1, 0, 20, 200)  # Matrix for 90-degree rotation
         
         drawing.add(scatter)
         drawing.add(x_label)
