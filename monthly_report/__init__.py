@@ -95,8 +95,8 @@ class MonthlyReportGenerator:
                     color = colors.lightgreen
                 elif risk_level <= 12:
                     color = colors.yellow
-                elif risk_level <= 20:
-                    color = colors.orange
+                # elif risk_level <= 20:
+                #     color = colors.orange
                 else:
                     color = colors.red
                 
@@ -109,13 +109,15 @@ class MonthlyReportGenerator:
         scatter.y = 50
         scatter.width = 300
         scatter.height = 300
+        scatter.xLabel = ''
+        scatter.yLabel = ''
         
         # Add data points
-        scatter.data = [[(risk['likelihood'], risk['impact']) for risk in risks]]
-        scatter.xValueAxis.valueMin = 0
+        scatter.data = [[(risk['impact'] + 0.5, risk['likelihood'] + 0.5) for risk in risks]]
+        scatter.xValueAxis.valueMin = 1
         scatter.xValueAxis.valueMax = 5
         scatter.xValueAxis.valueStep = 1
-        scatter.yValueAxis.valueMin = 0
+        scatter.yValueAxis.valueMin = 1
         scatter.yValueAxis.valueMax = 5
         scatter.yValueAxis.valueStep = 1
         
@@ -124,15 +126,15 @@ class MonthlyReportGenerator:
         scatter.yValueAxis.labels.fontSize = 10
         
         # Add axis labels
-        x_label = String(200, 20, 'Likelihood')
+        x_label = String(200, 20, 'Impact')
         x_label.fontSize = 12
         x_label.textAnchor = 'middle'
         
         # Rotated y-label
-        y_label = String(20, 200, 'Impact')
+        y_label = String(20, 200, 'Likelihood')
         y_label.fontSize = 12
         y_label.textAnchor = 'middle'
-        drawing.transform = (0, 1, -1, 0, 20, 200)  # Matrix for 90-degree rotation
+        # drawing.transform = (0, 1, -1, 0, 20, 200)  # Matrix for 90-degree rotation
         
         drawing.add(scatter)
         drawing.add(x_label)
