@@ -110,7 +110,7 @@
           label: 'Planned Expenditures',
           data: [
             {% for account in financials.accounts %}
-              {{ account.expected_expenditures | sum(attribute='amount') }},
+              {{ account.expected_expenditures | sum(attribute="amount") }},
             {% endfor %}
           ],
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -120,7 +120,7 @@
           label: 'Actual Expenditures',
           data: [
             {% for account in financials.accounts %}
-              {{ account.actual_expenditures | sum(attribute='amount') }},
+              {{ account.actual_expenditures | sum(attribute="amount") }},
             {% endfor %}
           ],
           backgroundColor: 'rgba(54, 162, 235, 0.2)',

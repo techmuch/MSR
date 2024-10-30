@@ -10,8 +10,10 @@ class SumExtension(Extension):
     def filter_test(self, value):
         return value
 
-    def sum(self, items, attr):
-        return sum(getattr(item, attr) for item in items)
+    def sum(self, items, attribute=None):
+        if attribute:
+            return sum(item[attribute] for item in items)
+        return sum(items)
 
     def __init__(self, environment):
         super(SumExtension, self).__init__(environment)
