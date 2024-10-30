@@ -3,7 +3,7 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
-from reportlab.graphics.shapes import Drawing, String
+from reportlab.graphics.shapes import Drawing, String, Rect
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.linecharts import HorizontalLineChart
 # from reportlab.graphics.charts.scatter import ScatterPlot
@@ -87,6 +87,22 @@ class MonthlyReportGenerator:
         """Create a risk matrix visualization"""
         drawing = Drawing(400, 400)
         
+        # Create background grid with risk colors
+        for i in range(5):
+            for j in range(5):
+                risk_level = (i + 1) * (j + 1)
+                if risk_level <= 6:
+                    color = colors.lightgreen
+                elif risk_level <= 12:
+                    color = colors.yellow
+                elif risk_level <= 20:
+                    color = colors.orange
+                else:
+                    color = colors.red
+                
+                rect = Rect(50 + i*60, 50 + j*60, 60, 60, fillColor=color, strokeColor=colors.black)
+                drawing.add(rect)
+        
         # Create scatter plot
         scatter = ScatterPlot()
         scatter.x = 50
@@ -112,51 +128,84 @@ class MonthlyReportGenerator:
         x_label.fontSize = 12
         x_label.textAnchor = 'middle'
         
-        # For y-label, use multiple strings to create vertical text
-        impact_text = 'Impact'
-        for i, char in enumerate(impact_text):
-            y_char = String(20, 100 + i*20, char)
-            y_char.fontSize = 12
-            y_char.textAnchor = 'middle'
-            drawing.add(y_char)
+        # Rotated y-label
+        y_label = String(20, 200, 'Impact')
+        y_label.fontSize = 12
+        y_label.textAnchor = 'middle'
+        y_label.angle = 90
         
         drawing.add(scatter)
         drawing.add(x_label)
+        drawing.add(y_label)
         return drawing
 
-    def _create_financial_chart(self, accounts):
-        """Create a financial bar chart"""
+    def _create_account_chart(self, account):
+        """Create a financial chart for a single account"""
         drawing = Drawing(500, 250)
         
+        # Bar chart for monthly expenditures
         bc = VerticalBarChart()
         bc.x = 50
         bc.y = 50
         bc.height = 175
         bc.width = 400
-        
-        # Prepare data
+
+        # Prepare monthly data
         expected = []
         actual = []
         labels = []
-        
-        for account in accounts:
-            labels.append(account['account_name'])
-            expected.append(sum(exp['amount'] for exp in account['expected_expenditures']))
-            actual.append(sum(exp['amount'] for exp in account['actual_expenditures']))
-        
+        total_budget = sum(exp['amount'] for exp in account['expected_expenditures'])
+        running_budget = total_budget
+        burndown = []
+
+        for exp in account['expected_expenditures']:
+            month_year = f"{exp['month']}/{str(exp['year'])[2:]}"
+            labels.append(month_year)
+            expected.append(exp['amount'])
+            
+            # Find matching actual expenditure
+            actual_exp = next((a for a in account['actual_expenditures'] 
+                             if a['month'] == exp['month'] and a['year'] == exp['year']), 
+                            {'amount': 0})
+            actual.append(actual_exp['amount'])
+            
+            burndown.append(running_budget)
+            running_budget -= exp['amount']
+
         bc.data = [expected, actual]
         bc.categoryAxis.categoryNames = labels
         bc.categoryAxis.labels.boxAnchor = 'ne'
         bc.categoryAxis.labels.dx = -8
         bc.categoryAxis.labels.dy = -2
         bc.categoryAxis.labels.angle = 30
-        
+
         # Add legend
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.red
+        
+        # Add burndown line
+        lc = HorizontalLineChart()
+        lc.x = bc.x
+        lc.y = bc.y
+        lc.height = bc.height
+        lc.width = bc.width
+        lc.data = [burndown]
+        lc.lines[0].strokeColor = colors.green
+        lc.lines[0].strokeWidth = 2
+        
         drawing.add(bc)
+        drawing.add(lc)
         
         return drawing
+
+    def _create_financial_charts(self, accounts):
+        """Create financial charts for all accounts"""
+        charts = []
+        for account in accounts:
+            charts.append(Paragraph(f"Account: {account['account_name']}", self.styles['SubsectionTitle']))
+            charts.append(self._create_account_chart(account))
+            charts.append(Spacer(1, 20))
+        return charts
 
     def generate_monthly_report(self):
         """Generate PDF report using ReportLab"""
@@ -261,11 +310,10 @@ class MonthlyReportGenerator:
         story.append(Paragraph(financial_text, self.styles['Normal']))
         story.append(Spacer(1, 12))
         
-        # Financial Chart
+        # Financial Charts
         story.append(Paragraph("Expenditures by Account", self.styles['SubsectionTitle']))
-        financial_chart = self._create_financial_chart(data['financials']['accounts'])
-        story.append(financial_chart)
-        story.append(Spacer(1, 20))
+        charts = self._create_financial_charts(data['financials']['accounts'])
+        story.extend(charts)
 
         # Recipients Section
         story.append(Paragraph("Report Recipients", self.styles['SectionTitle']))
