@@ -29,7 +29,7 @@
 
 <h2>Planned Efforts</h2>
 {% for effort in roadmap %}
-  {% if effort.start_date|date >= now|date and effort.start_date|date <= thirty_days|date %}
+  {% if effort.start_date|date >= now|date and effort.start_date|date < thirty_days|date %}
     <h3>Next 30 Days</h3>
     <ul>
       <li>
@@ -49,7 +49,7 @@
       </li>
     </ul>
   {% endif %}
-  {% if effort.start_date|date >= thirty_days|date and effort.start_date|date <= sixty_days|date %}
+  {% if effort.start_date|date >= thirty_days|date and effort.start_date|date < sixty_days|date %}
     <h3>Next 60 Days</h3>
     <ul>
       <li>
@@ -69,7 +69,7 @@
       </li>
     </ul>
   {% endif %}
-  {% if effort.start_date|date >= sixty_days|date and effort.start_date|date <= ninety_days|date %}
+  {% if effort.start_date|date >= sixty_days|date and effort.start_date|date < ninety_days|date %}
     <h3>Next 90 Days</h3>
     <ul>
       <li>
