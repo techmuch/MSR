@@ -1,28 +1,37 @@
-from jinja2 import Template, Environment
-import json
-from reportlab.pdfgen import canvas
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
+from reportlab.graphics.shapes import Drawing
+from reportlab.graphics.charts.barcharts import VerticalBarChart
+from reportlab.graphics.charts.linecharts import HorizontalLineChart
 from datetime import datetime, timedelta
-from jinja2.ext import Extension
-from jinja2.lexer import Token
-from jinja2.utils import open_if_exists
-
-class SumExtension(Extension):
-    def filter_test(self, value):
-        return value
-
-    def sum(self, items, attribute=None):
-        if attribute:
-            return sum(item[attribute] for item in items)
-        return sum(items)
-
-    def __init__(self, environment):
-        super(SumExtension, self).__init__(environment)
-        environment.filters['sum'] = self.sum
+import json
 
 class MonthlyReportGenerator:
-    def __init__(self, template_path, data_path):
-        self.template_path = template_path
+    def __init__(self, data_path):
         self.data_path = data_path
+        self.styles = getSampleStyleSheet()
+        # Add custom styles
+        self.styles.add(ParagraphStyle(
+            name='CustomTitle',
+            parent=self.styles['Heading1'],
+            fontSize=24,
+            spaceAfter=30
+        ))
+        self.styles.add(ParagraphStyle(
+            name='SectionTitle',
+            parent=self.styles['Heading2'],
+            fontSize=18,
+            spaceAfter=20
+        ))
+        self.styles.add(ParagraphStyle(
+            name='SubsectionTitle',
+            parent=self.styles['Heading3'],
+            fontSize=14,
+            spaceAfter=12
+        ))
 
     def generate_monthly_report(self):
         with open(self.template_path, 'r') as f:
