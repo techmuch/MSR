@@ -107,19 +107,21 @@ class MonthlyReportGenerator:
         scatter.xValueAxis.labels.fontSize = 10
         scatter.yValueAxis.labels.fontSize = 10
         
-        # Add axis labels as separate strings
+        # Add axis labels
         x_label = String(200, 20, 'Likelihood')
         x_label.fontSize = 12
         x_label.textAnchor = 'middle'
         
-        y_label = String(30, 200, 'Impact')
-        y_label.fontSize = 12
-        y_label.textAnchor = 'middle'
-        y_label.angle = 90
+        # For y-label, use multiple strings to create vertical text
+        impact_text = 'Impact'
+        for i, char in enumerate(impact_text):
+            y_char = String(20, 100 + i*20, char)
+            y_char.fontSize = 12
+            y_char.textAnchor = 'middle'
+            drawing.add(y_char)
         
         drawing.add(scatter)
         drawing.add(x_label)
-        drawing.add(y_label)
         return drawing
 
     def _create_financial_chart(self, accounts):
